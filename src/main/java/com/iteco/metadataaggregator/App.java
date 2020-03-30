@@ -1,4 +1,4 @@
-package com.iteco;
+package com.iteco.metadataaggregator;
 
 /**
  * Hello world!

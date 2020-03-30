@@ -8,6 +8,10 @@
   <artifactId>PhotoAgregator</artifactId>
   <packaging>pom</packaging>
   <version>1.0-SNAPSHOT</version>
+  <modules>
+    <module>MetaDataAggregator</module>
+    <module>MetaDataPresenter</module>
+  </modules>
 
   <name>PhotoAgregator</name>
   <!-- FIXME change it to the project's website -->
@@ -36,10 +40,9 @@
       </exclusions>
     </dependency>
     <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.11</version>
-      <scope>test</scope>
+      <groupId>org.postgresql</groupId>
+      <artifactId>postgresql</artifactId>
+      <version>42.2.8.jre7</version>
     </dependency>
   </dependencies>
 
