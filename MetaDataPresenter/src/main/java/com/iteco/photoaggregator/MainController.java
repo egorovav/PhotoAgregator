@@ -30,8 +30,7 @@ public class MainController {
         responseBuilder.append("<body>\n");
         List<PhotographerEntity> photographers = photographerRepository.findAll();
         for(PhotographerEntity photographer : photographers) {
-            responseBuilder.append(
-                    "<a href=\"http://localhost:8080/photos/" + photographer.getId() + "\">");
+            responseBuilder.append("<a href=\"photos/" + photographer.getId() + "\">");
             responseBuilder.append(photographer.getName());
             responseBuilder.append("</a>\n");
             responseBuilder.append("<br>\n");
