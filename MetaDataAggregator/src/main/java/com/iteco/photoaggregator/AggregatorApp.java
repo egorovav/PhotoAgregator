@@ -1,6 +1,5 @@
-package com.iteco.metadataaggregator;
+package com.iteco.photoaggregator;
 
-import com.iteco.metadataaggregator.model.TestDataGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -9,13 +8,13 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
-public class App 
+public class AggregatorApp
 {
     @Autowired
     private TestDataGenerator dataGenerator;
 
     public static void main( String[] args ) {
-        SpringApplication.run(App.class, args);
+        SpringApplication.run(AggregatorApp.class, args);
     }
 
     @Bean

@@ -6,6 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="PhotoMetaData" />
         <module name="MetaDataAggregator" />
         <module name="MetaDataPresenter" />
       </profile>
@@ -16,6 +17,7 @@
       <module name="MetaDataAggregator" options="-parameters" />
       <module name="MetaDataPresenter" options="-parameters" />
       <module name="PhotoAggregator" options="-parameters" />
+      <module name="PhotoMetaData" options="-parameters" />
     </option>
   </component>
 </project>

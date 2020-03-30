@@ -11,5 +11,13 @@
 
     <artifactId>MetaDataPresenter</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.iteco</groupId>
+            <artifactId>PhotoMetaData</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
 
 </project>

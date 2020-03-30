@@ -1,4 +1,4 @@
-package com.iteco.metadataaggregator;
+package com.iteco.photoaggregator;
 
 import static org.junit.Assert.assertTrue;
 

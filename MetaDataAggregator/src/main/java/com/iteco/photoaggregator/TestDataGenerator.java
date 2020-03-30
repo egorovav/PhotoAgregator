@@ -1,4 +1,4 @@
-package com.iteco.metadataaggregator.model;
+package com.iteco.photoaggregator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

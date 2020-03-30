@@ -1,4 +1,4 @@
-package com.iteco.metadataaggregator.model;
+package com.iteco.photoaggregator;
 
 import javax.persistence.*;
 import java.util.Objects;
