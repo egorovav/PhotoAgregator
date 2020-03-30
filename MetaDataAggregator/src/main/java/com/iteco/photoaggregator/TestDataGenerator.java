@@ -1,5 +1,9 @@
 package com.iteco.photoaggregator;
 
+import com.iteco.photoaggregator.model.PhotoMetaDataEntity;
+import com.iteco.photoaggregator.model.PhotoMetaDataRepository;
+import com.iteco.photoaggregator.model.PhotographerEntity;
+import com.iteco.photoaggregator.model.PhotographerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
