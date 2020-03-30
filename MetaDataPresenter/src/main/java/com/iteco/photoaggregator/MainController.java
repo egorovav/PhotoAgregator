@@ -20,7 +20,6 @@ public class MainController {
     }
 
     @RequestMapping(path="/", method=RequestMethod.GET)
-    @ResponseBody
     public String getPhotographerList() {
         StringBuilder responseBuilder = new StringBuilder();
         responseBuilder.append("<!DOCTYPE html>\n");
@@ -41,7 +40,6 @@ public class MainController {
     }
 
     @RequestMapping(path="photos/{photographerId}", method=RequestMethod.GET)
-    @ResponseBody
     public String getPhotoList(@PathVariable("photographerId") UUID photographerId) {
         StringBuilder responseBuilder = new StringBuilder();
         responseBuilder.append("<!DOCTYPE html>\n");
