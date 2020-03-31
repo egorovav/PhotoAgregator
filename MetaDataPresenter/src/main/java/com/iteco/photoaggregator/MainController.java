@@ -26,26 +26,6 @@ public class MainController {
         this.photoMetaDataRepository = photoMetaDataRepository;
     }
 
-//    @GetMapping(path="/")
-//    public String getPhotographerList() {
-//        StringBuilder responseBuilder = new StringBuilder();
-//        responseBuilder.append("<!DOCTYPE html>\n");
-//        responseBuilder.append("<html>\n");
-//        responseBuilder.append("<head>\n");
-//        responseBuilder.append("</head>\n");
-//        responseBuilder.append("<body>\n");
-//        List<PhotographerEntity> photographers = photographerRepository.findAll();
-//        for(PhotographerEntity photographer : photographers) {
-//            responseBuilder.append("<a href=\"photos/" + photographer.getId() + "\">");
-//            responseBuilder.append(photographer.getName());
-//            responseBuilder.append("</a>\n");
-//            responseBuilder.append("<br>\n");
-//        }
-//        responseBuilder.append("</body>\n");
-//        responseBuilder.append("</html>");
-//        return responseBuilder.toString();
-//    }
-
     @GetMapping(path="/")
     public String photographerList(Model uiModel) {
         List<PhotographerEntity> photographers = photographerRepository.findAll();
