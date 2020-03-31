@@ -5,13 +5,16 @@ import com.iteco.photoaggregator.model.PhotoMetaDataRepository;
 import com.iteco.photoaggregator.model.PhotographerEntity;
 import com.iteco.photoaggregator.model.PhotographerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
-@RestController
+@Controller
 public class MainController {
 
     private final PhotographerRepository photographerRepository;
@@ -23,42 +26,45 @@ public class MainController {
         this.photoMetaDataRepository = photoMetaDataRepository;
     }
 
-    @RequestMapping(path="/", method=RequestMethod.GET)
-    public String getPhotographerList() {
-        StringBuilder responseBuilder = new StringBuilder();
-        responseBuilder.append("<!DOCTYPE html>\n");
-        responseBuilder.append("<html>\n");
-        responseBuilder.append("<head>\n");
-        responseBuilder.append("</head>\n");
-        responseBuilder.append("<body>\n");
+//    @GetMapping(path="/")
+//    public String getPhotographerList() {
+//        StringBuilder responseBuilder = new StringBuilder();
+//        responseBuilder.append("<!DOCTYPE html>\n");
+//        responseBuilder.append("<html>\n");
+//        responseBuilder.append("<head>\n");
+//        responseBuilder.append("</head>\n");
+//        responseBuilder.append("<body>\n");
+//        List<PhotographerEntity> photographers = photographerRepository.findAll();
+//        for(PhotographerEntity photographer : photographers) {
+//            responseBuilder.append("<a href=\"photos/" + photographer.getId() + "\">");
+//            responseBuilder.append(photographer.getName());
+//            responseBuilder.append("</a>\n");
+//            responseBuilder.append("<br>\n");
+//        }
+//        responseBuilder.append("</body>\n");
+//        responseBuilder.append("</html>");
+//        return responseBuilder.toString();
+//    }
+
+    @GetMapping(path="/")
+    public String photographerList(Model uiModel) {
         List<PhotographerEntity> photographers = photographerRepository.findAll();
-        for(PhotographerEntity photographer : photographers) {
-            responseBuilder.append("<a href=\"photos/" + photographer.getId() + "\">");
-            responseBuilder.append(photographer.getName());
-            responseBuilder.append("</a>\n");
-            responseBuilder.append("<br>\n");
-        }
-        responseBuilder.append("</body>\n");
-        responseBuilder.append("</html>");
-        return responseBuilder.toString();
+        uiModel.addAttribute("photographers", photographers);
+        return "photographers";
     }
 
-    @RequestMapping(path="photos/{photographerId}", method=RequestMethod.GET)
-    public String getPhotoList(@PathVariable("photographerId") UUID photographerId) {
-        StringBuilder responseBuilder = new StringBuilder();
-        responseBuilder.append("<!DOCTYPE html>\n");
-        responseBuilder.append("<html>\n");
-        responseBuilder.append("<head>\n");
-        responseBuilder.append("</head>\n");
-        responseBuilder.append("<body>\n");
+    @GetMapping(path="photos/{photographerId}")
+    public String getPhotoList(@PathVariable("photographerId") UUID photographerId, Model uiModel) {
         Collection<PhotoMetaDataEntity> photos =
                 photoMetaDataRepository.findByPhotographerId(photographerId);
-        for(PhotoMetaDataEntity photo : photos) {
-            responseBuilder.append(photo.toString());
-            responseBuilder.append("<br>\n");
+        uiModel.addAttribute("photos", photos);
+
+        Optional<PhotographerEntity> photographer = photographerRepository.findById(photographerId);
+        if(!photographer.isPresent()) {
+            return "error";
         }
-        responseBuilder.append("</body>\n");
-        responseBuilder.append("</html>");
-        return responseBuilder.toString();
+        uiModel.addAttribute("photographer", photographer.get());
+
+        return "photos";
     }
 }

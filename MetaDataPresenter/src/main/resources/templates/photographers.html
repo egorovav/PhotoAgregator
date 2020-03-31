@@ -1,0 +1,18 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <title>Photo meta data</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+    <h1>Photographers</h1>
+    <table>
+        <tr>
+            <th>Name</th>
+        </tr>
+        <tr th:each="photographer : ${photographers}">
+            <td><a th:href="${'/photos/' + photographer.id}" th:text="${photographer.name}"></a></td>
+        </tr>
+    </table>
+</body>
+</html>
