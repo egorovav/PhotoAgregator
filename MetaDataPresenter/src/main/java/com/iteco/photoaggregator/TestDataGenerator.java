@@ -26,8 +26,8 @@ public class TestDataGenerator {
     }
 
     public void deleteData() {
-        photoMetaDataRepository.deleteAll();
-        photographerRepository.deleteAll();
+        photoMetaDataRepository.deleteAllInBatch();
+        photographerRepository.deleteAllInBatch();
     }
 
     public long createData(int multiplier) {

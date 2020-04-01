@@ -21,7 +21,7 @@ public class PresenterApp {
     CommandLineRunner commandLineRunner(ApplicationContext ctx) {
         return args -> {
             dataGenerator.deleteData();
-            dataGenerator.createData(10);
+            dataGenerator.createData(100);
         };
     }
 }

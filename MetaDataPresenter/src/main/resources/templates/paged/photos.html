@@ -14,13 +14,17 @@
         <th>Long</th>
         <th>Create time</th>
     </tr>
-    <tr th:each="photo : ${photos}">
+    <tr th:each="photo : ${page.content}">
         <td th:text="${photo.title}">Title</td>
         <td th:text="${photo.latitude}">Latitude</td>
         <td th:text="${photo.longitude}">Longitude</td>
         <td th:text="${photo.createDate}">Create time</td>
     </tr>
 </table>
+<div th:if="${page.totalPages > 0}"
+     th:each="pageNumber : ${pageNumbers}">
+    <a th:href="${'/' + pageNumber}" th:text=${pageNumber}></a>
+</div>
 <div th:replace="~{fragments/footer :: footer}">Footer</div>
 </body>
 </html>
