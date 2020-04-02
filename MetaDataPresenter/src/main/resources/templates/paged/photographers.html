@@ -15,10 +15,14 @@
             <td><a th:href="${'/photos/' + photographer.id + '/1'}" th:text="${photographer.name}"></a></td>
         </tr>
     </table>
-    <div th:if="${page.totalPages > 0}"
-         th:each="pageNumber : ${pageNumbers}">
-        <a th:href="${'/' + pageNumber}" th:text=${pageNumber}></a>
-    </div>
+    <table>
+        <tr>
+            <td th:if="${page.totalPages > 0}"
+                th:each="pageNumber : ${pageNumbers}">
+                <a th:href="${'/' + pageNumber}" th:text=${pageNumber}></a>
+            </td>
+        </tr>
+    </table>
     <div th:replace="~{fragments/footer :: footer}">Footer</div>
 </body>
 
