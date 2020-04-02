@@ -1,6 +1,6 @@
 package com.iteco.photoaggregator;
 
-import com.iteco.photoaggregator.model.PhotoMetaDataEntity;
+import com.iteco.photoaggregator.model.PhotoMetadataEntity;
 import com.iteco.photoaggregator.model.PhotoMetaDataRepository;
 import com.iteco.photoaggregator.model.PhotographerEntity;
 import com.iteco.photoaggregator.model.PhotographerRepository;
@@ -22,13 +22,13 @@ import java.util.stream.IntStream;
 public class MainController {
 
     private final PhotographerRepository photographerRepository;
-    private final PhotoMetaDataRepository photoMetaDataRepository;
+    private final PhotoMetaDataRepository photoMetadataRepository;
     private final int pageSize = 20;
 
     @Autowired
     public MainController(PhotographerRepository photographerRepository, PhotoMetaDataRepository photoMetaDataRepository) {
         this.photographerRepository = photographerRepository;
-        this.photoMetaDataRepository = photoMetaDataRepository;
+        this.photoMetadataRepository = photoMetaDataRepository;
     }
 
     @GetMapping(path="/")
@@ -57,8 +57,8 @@ public class MainController {
 
     @GetMapping(path="photos/{photographerId}")
     public String photoList(@PathVariable("photographerId") UUID photographerId, Model uiModel) {
-        Collection<PhotoMetaDataEntity> photos =
-                photoMetaDataRepository.findByPhotographerId(photographerId);
+        Collection<PhotoMetadataEntity> photos =
+                photoMetadataRepository.findByPhotographerId(photographerId);
         uiModel.addAttribute("photos", photos);
 
         Optional<PhotographerEntity> photographer = photographerRepository.findById(photographerId);
@@ -68,5 +68,28 @@ public class MainController {
         uiModel.addAttribute("photographer", photographer.get());
 
         return "photos";
+    }
+
+    @GetMapping(path="photos/{photographerId}/{pageNumber}")
+    public String photoPage(@PathVariable UUID photographerId, @PathVariable int pageNumber, Model uiModel) {
+        Page<PhotoMetadataEntity> photoPage = photoMetadataRepository.findByPhotographerId(
+                photographerId, PageRequest.of(pageNumber - 1, pageSize));
+        uiModel.addAttribute("page", photoPage);
+
+        Optional<PhotographerEntity> photographer = photographerRepository.findById(photographerId);
+        if(!photographer.isPresent()) {
+            return "error";
+        }
+        uiModel.addAttribute("photographer", photographer.get());
+
+        int totalPages = photoPage.getTotalPages();
+        if(totalPages > 0) {
+            List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages)
+                    .boxed()
+                    .collect(Collectors.toList());
+            uiModel.addAttribute("pageNumbers", pageNumbers);
+        }
+
+        return "paged/photos";
     }
 }

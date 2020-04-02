@@ -7,7 +7,7 @@ import java.util.UUID;
 
 @Entity
 @Table(name="photos_meta_data", schema="public", catalog="PhotoMetaData")
-public class PhotoMetaDataEntity {
+public class PhotoMetadataEntity {
 
     private UUID id;
     private UUID photographerId;
@@ -16,7 +16,7 @@ public class PhotoMetaDataEntity {
     private Double longitude;
     private Timestamp createDate;
 
-    public PhotoMetaDataEntity(
+    public PhotoMetadataEntity(
             UUID photographerId,
             String title,
             Double latitude,
@@ -30,7 +30,7 @@ public class PhotoMetaDataEntity {
         this.createDate = createDate;
     }
 
-    public PhotoMetaDataEntity() {}
+    public PhotoMetadataEntity() {}
 
     @Id
     @Column(name="id")
@@ -74,7 +74,7 @@ public class PhotoMetaDataEntity {
             return false;
         }
 
-        PhotoMetaDataEntity entity = (PhotoMetaDataEntity)o;
+        PhotoMetadataEntity entity = (PhotoMetadataEntity)o;
         return Objects.equals(this.id, entity.id);
     }
 

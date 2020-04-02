@@ -1,6 +1,6 @@
 package com.iteco.photoaggregator;
 
-import com.iteco.photoaggregator.model.PhotoMetaDataEntity;
+import com.iteco.photoaggregator.model.PhotoMetadataEntity;
 import com.iteco.photoaggregator.model.PhotoMetaDataRepository;
 import com.iteco.photoaggregator.model.PhotographerEntity;
 import com.iteco.photoaggregator.model.PhotographerRepository;
@@ -41,10 +41,10 @@ public class TestDataGenerator {
         photographerRepository.saveAll(photographers);
         photographers = photographerRepository.findAll();
         totalRows += photographers.size();
-        List<PhotoMetaDataEntity> photosMetaData = new ArrayList<>();
+        List<PhotoMetadataEntity> photosMetaData = new ArrayList<>();
         for(PhotographerEntity photographer : photographers) {
             for(int i = 0; i < multiplier; i++) {
-                photosMetaData.add(new PhotoMetaDataEntity(
+                photosMetaData.add(new PhotoMetadataEntity(
                             photographer.getId(),
                             "Photo " + i + " by " + photographer.getName(),
                             0.0,
