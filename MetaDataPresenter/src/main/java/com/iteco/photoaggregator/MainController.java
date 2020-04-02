@@ -7,6 +7,8 @@ import com.iteco.photoaggregator.model.PhotographerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -70,10 +72,17 @@ public class MainController {
         return "photos";
     }
 
-    @GetMapping(path="photos/{photographerId}/{pageNumber}")
-    public String photoPage(@PathVariable UUID photographerId, @PathVariable int pageNumber, Model uiModel) {
-        Page<PhotoMetadataEntity> photoPage = photoMetadataRepository.findByPhotographerId(
-                photographerId, PageRequest.of(pageNumber - 1, pageSize));
+    @GetMapping(path="photos/{photographerId}/{sortColumn}/{pageNumber}")
+    public String photoPage(@PathVariable UUID photographerId,
+                            @PathVariable String sortColumn,
+                            @PathVariable int pageNumber,
+                            Model uiModel) {
+
+        uiModel.addAttribute("sortColumn", sortColumn);
+
+        Pageable pageable = PageRequest.of(pageNumber - 1, pageSize, Sort.by(sortColumn));
+        Page<PhotoMetadataEntity> photoPage =
+                photoMetadataRepository.findByPhotographerId(photographerId, pageable);
         uiModel.addAttribute("page", photoPage);
 
         Optional<PhotographerEntity> photographer = photographerRepository.findById(photographerId);
