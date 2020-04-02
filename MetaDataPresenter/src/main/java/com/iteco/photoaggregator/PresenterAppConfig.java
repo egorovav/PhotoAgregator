@@ -5,6 +5,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.web.config.EnableSpringDataWebSupport;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
@@ -35,7 +37,15 @@ public class PresenterAppConfig implements WebMvcConfigurer {
         dataSource.setUrl("jdbc:postgresql://localhost:5432/PhotoMetaData");
         dataSource.setUsername("postgres");
         dataSource.setPassword("q");
+        dataSource.setCatalog("PhotoMetaData");
+        dataSource.setSchema("public");
         return dataSource;
+    }
+
+    public DataSource testDataSource() {
+        EmbeddedDatabaseBuilder dbBuilder = new EmbeddedDatabaseBuilder();
+        dbBuilder.setType(EmbeddedDatabaseType.H2);
+        return dbBuilder.build();
     }
 
     @Bean
@@ -47,7 +57,8 @@ public class PresenterAppConfig implements WebMvcConfigurer {
         LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
         factory.setJpaVendorAdapter(vendorAdapter);
         factory.setPackagesToScan("com.iteco.photoaggregator.model");
-        factory.setDataSource(dataSource());
+        //factory.setDataSource(dataSource());
+        factory.setDataSource(testDataSource());
         factory.afterPropertiesSet();
 
         return factory.getObject();

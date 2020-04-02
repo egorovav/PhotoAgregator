@@ -6,11 +6,9 @@ import com.iteco.photoaggregator.model.PhotographerEntity;
 import com.iteco.photoaggregator.model.PhotographerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import sun.management.counter.Units;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
-import java.time.temporal.TemporalUnit;
 import java.util.ArrayList;
 import java.util.List;
 

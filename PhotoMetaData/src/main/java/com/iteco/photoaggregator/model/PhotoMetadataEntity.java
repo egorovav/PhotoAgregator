@@ -6,7 +6,7 @@ import java.util.Objects;
 import java.util.UUID;
 
 @Entity
-@Table(name="photos_meta_data", schema="public", catalog="PhotoMetaData")
+@Table(name="photos_meta_data")
 public class PhotoMetadataEntity {
 
     private UUID id;
