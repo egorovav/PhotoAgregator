@@ -21,6 +21,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 @Controller
+@RequestMapping("/")
 public class MainController {
 
     private final PhotographerRepository photographerRepository;
@@ -35,9 +36,10 @@ public class MainController {
 
     @GetMapping(path="/")
     public String photographerList(Model uiModel) {
-        List<PhotographerEntity> photographers = photographerRepository.findAll();
-        uiModel.addAttribute("photographers", photographers);
-        return "photographers";
+        //List<PhotographerEntity> photographers = photographerRepository.findAll();
+        //uiModel.addAttribute("photographers", photographers);
+        //return "photographers";
+        return photographerPage(1, uiModel);
     }
 
     @GetMapping(path="/{pageNumber}")
@@ -57,7 +59,7 @@ public class MainController {
         return "paged/photographers";
     }
 
-    @GetMapping(path="photos/{photographerId}")
+    @GetMapping(path="/photos/{photographerId}")
     public String photoList(@PathVariable("photographerId") UUID photographerId, Model uiModel) {
         Collection<PhotoMetadataEntity> photos =
                 photoMetadataRepository.findByPhotographerId(photographerId);
@@ -72,7 +74,7 @@ public class MainController {
         return "photos";
     }
 
-    @GetMapping(path="photos/{photographerId}/{sortColumn}/{pageNumber}")
+    @GetMapping(path="/photos/{photographerId}/{sortColumn}/{pageNumber}")
     public String photoPage(@PathVariable UUID photographerId,
                             @PathVariable String sortColumn,
                             @PathVariable int pageNumber,

@@ -57,8 +57,8 @@ public class PresenterAppConfig implements WebMvcConfigurer {
         LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
         factory.setJpaVendorAdapter(vendorAdapter);
         factory.setPackagesToScan("com.iteco.photoaggregator.model");
-        //factory.setDataSource(dataSource());
-        factory.setDataSource(testDataSource());
+        factory.setDataSource(dataSource());
+        //factory.setDataSource(testDataSource());
         factory.afterPropertiesSet();
 
         return factory.getObject();
