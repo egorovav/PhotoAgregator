@@ -5,7 +5,6 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration;
 import javax.servlet.annotation.WebServlet;
 
-//import org.h2.server.web.WebServlet;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 public class WebApplicationInitializer

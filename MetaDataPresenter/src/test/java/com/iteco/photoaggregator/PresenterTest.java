@@ -19,7 +19,7 @@ import static org.junit.Assert.*;
 @SpringBootTest(classes = PresenterApp.class)
 public class PresenterTest {
 
-    private final int multiplier = 3;
+    private final int multiplier = 100;
     private long rowCount;
 
     @Autowired

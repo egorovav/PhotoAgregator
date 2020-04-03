@@ -6,17 +6,17 @@
 </head>
 <body>
 <div th:replace="~{fragments/header :: header}">Header</div>
-<a href="/1">Back to photographers</a>
+<a href="/photometadata/1">Back to photographers</a>
 <h1 th:text="'Photos by ' + ${photographer.name}"></h1>
 <table>
     <tr>
-        <th><a th:href="${'/photos/' + photographer.id + '/title/' + pageNumber}"
+        <th><a th:href="${'/photometadata/photos/' + photographer.id + '/title/' + pageNumber}"
                 th:style="${sortColumn=='title'} ? 'text-decoration:none'">Title</a></th>
-        <th><a th:href="${'/photos/' + photographer.id + '/latitude/' + pageNumber}"
+        <th><a th:href="${'/photometadata/photos/' + photographer.id + '/latitude/' + pageNumber}"
                th:style="${sortColumn=='latitude'} ? 'text-decoration:none'">Lat</a></th>
-        <th><a th:href="${'/photos/' + photographer.id + '/longitude/' + pageNumber}"
+        <th><a th:href="${'/photometadata/photos/' + photographer.id + '/longitude/' + pageNumber}"
                th:style="${sortColumn=='longitude'} ? 'text-decoration:none'">Long</a></th>
-        <th><a th:href="${'/photos/' + photographer.id + '/createDate/' + pageNumber}"
+        <th><a th:href="${'/photometadata/photos/' + photographer.id + '/createDate/' + pageNumber}"
                th:style="${sortColumn=='createDate'} ? 'text-decoration:none'">Create time</a></th>
     </tr>
     <tr th:each="photo : ${page.content}">
@@ -30,7 +30,7 @@
     <tr>
         <td th:if="${page.totalPages > 0}"
             th:each="pageNumber : ${pageNumbers}">
-            <a th:href="${'/photos/' + photographer.id + '/' + sortColumn + '/' + pageNumber}"
+            <a th:href="${'/photometadata/photos/' + photographer.id + '/' + sortColumn + '/' + pageNumber}"
                th:text=${pageNumber}
                th:style="${pageNumber==page.number + 1} ? 'text-decoration:none'"></a>
         </td>

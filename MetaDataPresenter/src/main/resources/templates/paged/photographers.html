@@ -12,7 +12,7 @@
             <th>Name</th>
         </tr>
         <tr th:each="photographer : ${page.content}">
-            <td><a th:href="${'/photos/' + photographer.id + '/title/1'}"
+            <td><a th:href="${'/photometadata/photos/' + photographer.id + '/title/1'}"
                    th:text="${photographer.name}">
             </a></td>
         </tr>
@@ -21,7 +21,7 @@
         <tr>
             <td th:if="${page.totalPages > 0}"
                 th:each="pageNumber : ${pageNumbers}">
-                <a th:href="${'/' + pageNumber}"
+                <a th:href="${'/photometadata/' + pageNumber}"
                    th:text=${pageNumber}
                    th:style="${pageNumber==page.number + 1} ? 'text-decoration:none'"></a>
             </td>
