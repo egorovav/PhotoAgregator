@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping(path={"/", "/photometadata"})
 public class MainController {
 
     private final PhotographerRepository photographerRepository;
