@@ -56,6 +56,43 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>com.microsoft.azure</groupId>
+                <artifactId>azure-webapp-maven-plugin</artifactId>
+                <version>1.9.0</version>
+                <configuration>
+                    <authType>service_principal</authType>
+                    <auth>
+                        <client>e759c078-36c5-48ab-813d-d6583045d003</client>
+                        <tenant>a1badad0-0b39-4451-837f-76443f4136b4</tenant>
+                        <key>07b7cc69-3770-4ddd-8529-246e3b749aca</key>
+                        <environment>AZURE</environment>
+                    </auth>
+                    <!-- Specify v2 schema -->
+                    <schemaVersion>v2</schemaVersion>
+                    <!-- App information -->
+                    <subscriptionId>027f8062-f84b-4c3d-811a-9f96f9ee90c8</subscriptionId>
+                    <resourceGroup>ResourceGroup1</resourceGroup>
+                    <appName>egorovsonalexey</appName>
+                    <region>centralus</region>
+                    <!-- Java Runtime Stack for App Service on Windows-->
+                    <runtime>
+                        <os>windows</os>
+                        <javaVersion>1.8</javaVersion>
+                        <webContainer>tomcat 9.0</webContainer>
+                    </runtime>
+                    <deployment>
+                        <resources>
+                            <resource>
+                                <directory>${project.basedir}/target</directory>
+                                <includes>
+                                    <include>*.war</include>
+                                </includes>
+                            </resource>
+                        </resources>
+                    </deployment>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 </project>
